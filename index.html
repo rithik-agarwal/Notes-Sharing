@@ -1,0 +1,153 @@
+<html>
+    <head>
+        <title>Note sharing</title>
+        <style>
+            
+.navbar {
+  overflow: hidden;
+  background-color:black
+}
+
+.navbar a {
+  float: left;
+  font-size: 16px;
+  color:white;
+  text-align: center;
+  padding: 40px 50px;
+  text-decoration: none;
+}
+
+.navbar a:hover {
+  background-color: red;
+}
+.heading
+{
+    text-align: center;
+    padding-bottom: 20px;
+
+}
+#changes
+{
+    width:90%;
+    height:15%;
+    background: #e8bbbb;
+}
+
+.note
+{
+    width:90%;
+    height: 20%;
+}
+#work
+{
+    background-color: black;
+    color:green;
+}
+#edit
+{
+    width:5%;
+    height:5%;
+    background: black;
+    color:green;
+}
+#del
+{
+    width:5%;
+    height:5%;
+    background: black;
+    color:green;
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="#home">Home</a>
+            <a href="#news">About</a>
+            <a href="#home">Contact</a>
+            <a href="#news">Settings</a>
+
+            </div>
+            <div>
+                <h1 class="heading">
+                    SHARE OR VIEW NOTES ON THIS PLATFORM..
+                </h1>
+            </div>
+            <div class="test" id="test2">
+                <label>Click here for additional notes..</label><br>
+                <textarea class="note" id="note2" type="text"></textarea><br>
+                <input onclick="addp()" type="button" id="work" value="ADD NOTE">
+            </div>
+            <div id="extra">
+
+            </div>
+            <script>
+
+                var e = 0;
+             
+                function addp()
+                {   let add=document.getElementById("work");
+                let val= document.getElementById("note2").value;
+                   let a=document.getElementById("test2");
+                   let b=document.createElement("div");
+                   let c=document.createTextNode(val);
+                   let d=document.createElement("input");
+                   let f=document.createElement("input");
+                   let g=document.createElement("input");
+                   let h=document.createElement("br");
+                   f.setAttribute("type","Button");
+                   g.setAttribute("type","Button");
+                   f.setAttribute("value","Edit");
+                   g.setAttribute("value","delete");
+                   d.setAttribute("value",val);
+                   d.setAttribute("id","changes");
+                   d.setAttribute("disabled","");
+                   f.setAttribute("id","edit");
+                   g.setAttribute("id","del");
+
+                   g.setAttribute("onclick","del(this)");
+                   f.setAttribute("onclick","edit(this)");
+                
+                  
+                  
+                   b.appendChild(d);
+                   b.appendChild(h);
+                   b.appendChild(f);
+                   b.appendChild(g);
+                  
+
+                   document.getElementById("extra").appendChild(b);
+                    e++;
+
+                }
+                function edit (obj)
+                {
+                    obj.parentNode.childNodes[0].removeAttribute("disabled");
+                    obj.parentNode.childNodes[0].setAttribute("editable", true);
+                    obj.setAttribute("value","save");
+                    obj.setAttribute("onclick", "confirm(this)");
+
+                }
+
+                function confirm(obj) {
+                    obj.setAttribute("value","edit");
+                    obj.setAttribute("onclick","edit(this)");
+                    obj.parentNode.childNodes[0].setAttribute("disabled", "");                    
+
+                }
+
+                function del(obj) {
+                    for (let i = 0; i<e; i++) {
+                        if(obj.parentNode.parentNode.childNodes[i].childNodes[3]==obj) {
+                            obj.parentNode.parentNode.removeChild(obj.parentNode.parentNode.childNodes[i]);
+                        }
+                    }
+                     
+
+                }
+               
+                
+                </script>
+    </body>
+
+</html>
